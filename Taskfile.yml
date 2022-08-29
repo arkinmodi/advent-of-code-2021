@@ -5,6 +5,7 @@ tasks:
     cmds:
       - task: day1-format
       - task: day2-format
+      - task: day3-format
 
   day1:
     dir: day_01
@@ -33,5 +34,20 @@ tasks:
 
   day2-test:
     dir: day_02
+    cmds:
+      - cargo test
+
+  day3:
+    dir: day_03
+    cmds:
+      - cargo run
+
+  day3-format:
+    dir: day_03
+    cmds:
+      - cargo fmt
+
+  day3-test:
+    dir: day_03
     cmds:
       - cargo test
