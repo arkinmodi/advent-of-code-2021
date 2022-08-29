@@ -4,15 +4,15 @@ use std::{
 };
 
 fn main() {
-    println!("Day 1 Part 1: {:?}", day_1_part_1("input_part_1.txt"));
+    println!("Day 1 Part 1: {:?}", day_1_part_1("input.txt"));
+    println!("Day 1 Part 2: {:?}", day_1_part_2("input.txt"));
 }
 
-fn day_1_part_1(input_part1_filename: &str) -> i32 {
-    let file = File::open(input_part1_filename).expect("Failed to open file.");
+fn day_1_part_1(filename: &str) -> i32 {
+    let file = File::open(filename).expect("Failed to open file.");
     let input: Vec<i32> = BufReader::new(file)
         .lines()
-        .map(|item| item.expect("Failed to parse line"))
-        .map(|item| item.parse::<i32>().unwrap())
+        .map(|item| item.expect("Failed to parse line").parse::<i32>().unwrap())
         .collect();
 
     let mut count = 0;
@@ -24,7 +24,28 @@ fn day_1_part_1(input_part1_filename: &str) -> i32 {
     count
 }
 
+fn day_1_part_2(filename: &str) -> i32 {
+    let file = File::open(filename).expect("Failed to open file.");
+    let input: Vec<i32> = BufReader::new(file)
+        .lines()
+        .map(|item| item.expect("Failed to parse line").parse::<i32>().unwrap())
+        .collect();
+
+    let mut count = 0;
+    for i in 3..input.len() {
+        if input[i - 3] < input[i] {
+            count += 1;
+        }
+    }
+    count
+}
+
 #[test]
 fn day_1_part_1_example() {
-    assert_eq!(day_1_part_1("example_part_1.txt"), 7);
+    assert_eq!(7, day_1_part_1("example.txt"));
+}
+
+#[test]
+fn day_1_part_2_example() {
+    assert_eq!(5, day_1_part_2("example.txt"));
 }
