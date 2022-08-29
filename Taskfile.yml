@@ -1,0 +1,21 @@
+version: '3'
+
+tasks:
+  format:
+    cmds:
+      - task: day1_format
+
+  day1:
+    dir: day_01
+    cmds:
+      - cargo run
+
+  day1_format:
+    dir: day_01
+    cmds:
+      - cargo fmt
+
+  day1_test:
+    dir: day_01
+    cmds:
+      - cargo test
